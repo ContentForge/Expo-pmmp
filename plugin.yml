@@ -1,0 +1,8 @@
+name: Expo
+version: 1.0.0
+author: qPexLegendary
+api: 4.0.0
+main: expo\Expo
+load: STARTUP
+depend:
+  - FormConstructor
