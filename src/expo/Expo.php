@@ -2,6 +2,7 @@
 
 namespace expo;
 
+use expo\condition\ConditionManager;
 use expo\item\ItemManager;
 use expo\player\PlayerManager;
 use pocketmine\plugin\PluginBase;
@@ -14,6 +15,7 @@ class Expo extends PluginBase {
     protected function onLoad(): void {
         $this->playerManager = PlayerManager::getInstance()->init($this);
         $this->itemManager = ItemManager::getInstance()->init($this);
+        ConditionManager::getInstance()->init();
     }
 
     protected function onEnable(): void {
