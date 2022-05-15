@@ -20,6 +20,7 @@ final class PlayerManager implements Listener {
     public function init(PluginBase $plugin): PlayerManager {
         $this->plugin = $plugin;
         $this->path = $plugin->getDataFolder() . "players/";
+        @mkdir($this->path);
 
         return $this;
     }
