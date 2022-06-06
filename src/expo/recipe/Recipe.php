@@ -7,6 +7,7 @@ use expo\util\ItemCounter;
 use expo\workbench\Workbench;
 use form\CustomForm;
 use pocketmine\item\Item;
+use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 use pocketmine\player\Player;
 
 class Recipe {
@@ -109,6 +110,18 @@ class Recipe {
 
             $player->getInventory()->addItem($this->craft($player, $count));
             $this->sendForm($player, crafted: $count);
+
+            if ($this->workbench !== null && $this->workbench->getSoundOnCraft() !== null) {
+                $pk = new PlaySoundPacket();
+                $pk->pitch = 1;
+                $pk->volume = 1;
+                $pk->soundName = $this->workbench->getSoundOnCraft();
+                $pos = $player->getPosition();
+                $pk->x = $pos->x;
+                $pk->y = $pos->y;
+                $pk->z = $pos->z;
+                $player->getNetworkSession()->sendDataPacket($pk);
+            }
         }, function (Player $player) {
             $this->workbench?->sendCraftList($player);
         });

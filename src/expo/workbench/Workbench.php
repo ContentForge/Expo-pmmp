@@ -29,4 +29,8 @@ class Workbench {
 
         //TODO
     }
+
+    public function getSoundOnCraft(): ?string {
+        return null;
+    }
 }
