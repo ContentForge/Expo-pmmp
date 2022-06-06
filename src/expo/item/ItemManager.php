@@ -97,9 +97,9 @@ final class ItemManager {
         return $this->packet;
     }
 
-    public function getItemId(Item $item): string {
+    public static function getItemId(Item $item): string {
         if($item->isNull()) return '0';
-        if($item instanceof Durable) return $item->getId() . ":" . $item->getMeta();
+        if(!$item instanceof Durable) return $item->getId() . ":" . $item->getMeta();
         return $item->getId() . "";
     }
 
